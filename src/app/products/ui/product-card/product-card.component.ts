@@ -1,14 +1,18 @@
 import { Component, input } from '@angular/core';
 import { ProductI } from '../../../interfaces/product.interface';
+import { RouterLink } from '@angular/router';
+import { ProductService } from '../../data-access/products.service';
+import { ProductDetailStateService } from '../../data-access/product-detail-state.service';
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './product-card.component.html',
-  styles: ``
+  styles: ``,
+ 
 })
-export class ProductCardComponent {
+export  class ProductCardComponent {
 
   product = input.required<ProductI>();
 

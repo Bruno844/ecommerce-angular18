@@ -7,7 +7,7 @@ import { environment } from "../../../environments/environment.development";
 
 const LIMIT_PER_PAGE = 5
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ProductService extends BaseHttpService {
 
     // private readonly http = inject(HttpClient)
@@ -22,5 +22,10 @@ export class ProductService extends BaseHttpService {
                 limit: page * LIMIT_PER_PAGE
             }
         });
+    }
+
+
+    getProduct(id: string):Observable<ProductI>{
+        return this.http.get<ProductI>(`${this.apiUrl}/products/${id}`)
     }
 }
