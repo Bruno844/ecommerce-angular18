@@ -1,0 +1,33 @@
+<!-- manejamos el estado de carga, si esta cargando, que muestre loading, si no(else) muestra prods -->
+
+<!-- utilizamos operador switch para tomar todos los casos -->
+<div class="mx-auto max-w-screen-xl">
+    @switch (productState.state.status()) {
+
+    @case ('loading') {
+    <p>Loading....</p>
+    }
+
+    @case ('error') {
+    <p>Error en traer prods</p>
+    }
+
+    @default {
+    <div class="flex justify-end">
+        <button (click)="changePage()" type="button"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">cambiar
+            pagina</button>
+    </div>
+    <div class="grid grid-cols-[repeat(4,300px)] gap-6">
+
+        @for(product of productState.state().products; track product) {
+        <app-product-card class="block" [product]="product" />
+        }
+
+    </div>
+    }
+    }
+
+
+
+</div>
