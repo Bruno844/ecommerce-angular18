@@ -3,6 +3,7 @@ import { ProductStateService } from '../../data-access/products-state.service';
 import { ProductService } from '../../data-access/products.service';
 import { ProductI } from '../../../interfaces/product.interface';
 import { ProductCardComponent } from '../../ui/product-card/product-card.component';
+import { CartStateService } from '../../../shared/data-access/cart-state.service';
 
 @Component({
   selector: 'app-product-list',
@@ -33,10 +34,20 @@ export default class ProductListComponent  {
 
   productState = inject(ProductStateService);
 
+  cartState = inject(CartStateService).state;
+
   changePage(){
     //*al ser un observable de multidifusion(subject), usamos el next para pasar a la siguiente escucha, en este caso cambiar de pagina
     const page = this.productState.state.page() + 1;
     this.productState.changePage.next(page)
+  }
+
+
+  addToCart(product: ProductI){
+    this.cartState.add({
+      product,
+      quantity: 1
+    })
   }
 
 }

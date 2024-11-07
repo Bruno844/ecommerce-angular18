@@ -11,3 +11,12 @@ export interface ProductI {
     };
     title: string;
 }
+
+
+//*interface para el carrito de compras
+export interface ProductItemCart {
+
+    product: ProductI;
+    quantity: number;
+
+}
